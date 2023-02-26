@@ -1,0 +1,121 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0 auto;
+}
+
+#img {
+  width: 45px;
+  height: 45px;
+}
+
+#img_db {
+  width: 450px;
+  height: 225px;
+}
+
+.rojo { color: red; }
+
+#titulo {
+    align-items: center;
+}
+
+#usuario {
+  list-style:none
+}
+
+tr,th {
+  border-style: none;
+}
+
+#tabla{
+  align-items: center;
+}
+
+.form {
+  width: 100%; /* Ancho del xx% */
+  max-width: 400px; /* Ancho maximo en px */
+  margin: 0 auto; /* Form en centro */
+  display: flex; /* Alineamos los elementos */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.mapa {
+  width: 800%; /* Ancho del xx% */
+  max-width: 600px; /* Ancho maximo en px */
+  margin: 0 auto; /* Form en centro */
+  align-items: center;
+}
+
+#img {
+  width: 45px;
+  height: 45px;
+}
+
+#img_db {
+  width: 450px;
+  height: 225px;
+}
+
+.rojo { color: red; }
+textarea {
+	resize: none;
+}
+
+.form-label {
+	font-size: 12px;
+	color: #5e9bfc;
+	margin: 0;
+	display: block;
+	opacity: 1;
+	-webkit-transition: .333s ease top, .333s ease opacity;
+	transition: .333s ease top, .333s ease opacity;
+}
+.form-control {
+	border-radius: 0;
+	border-color: #ccc;
+   	border-width: 0 0 2px 0;
+   	border-style: none none solid none;
+   	box-shadow: none;
+}
+.form-control:focus {
+	box-shadow: none;
+	border-color: #5e9bfc;
+}
+.js-hide-label {
+	opacity: 0; 	
+}
+.js-unhighlight-label {
+	color: #999 
+}
+.btn-start-order {
+	background: 0 0 #ffffff;
+    border: 1px solid #2f323a;
+    border-radius: 3px;
+    color: #2f323a;
+    font-family: "Raleway", sans-serif;
+    font-size: 16px;
+    line-height: inherit;
+    margin: 30px 0;
+    padding: 10px 50px;
+    text-transform: uppercase;
+    transition: all 0.25s ease 0s;
+}
+.btn-start-order:hover,.btn-start-order:active, .btn-start-order:focus {
+	border-color: #5e9bfc;
+	color: #5e9bfc;
+}
+
+.my-button{
+  position: fixed; /*Siempre va a estar fijo*/
+  right: 15px; /*Espacio desde la derecha */
+  bottom: 15px; /*Posicion del boton en la parte de abajo */
+  width: 100px; /*Medida de ancho */
+  height: 60px; /*Medida de alto */
+  z-index: 100 /*Determina la posicion hacia el frente de los demas elementos */
+  }

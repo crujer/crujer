@@ -1,0 +1,43 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0 auto;
+}
+
+#img {
+  width: 45px;
+  height: 45px;
+}
+
+#titulo {
+    align-items: center;
+}
+
+#usuario {
+  list-style:none
+}
+
+.my-button{
+  position: fixed; /*Siempre va a estar fijo*/
+  right: 15px; /*Espacio desde la derecha */
+  bottom: 15px; /*Posicion del boton en la parte de abajo */
+  width: 100px; /*Medida de ancho */
+  height: 60px; /*Medida de alto */
+  z-index: 100 /*Determina la posicion hacia el frente de los demas elementos */
+  }
+  
+
+tr,th {
+    border-style: none; /*Saca el borde de la tabla */
+}
+
+footer {
+  position: absolute;
+  width: 100%;
+  height: 20px;
+  margin-top: -1cm;
+}
+

@@ -1,0 +1,33 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0 auto;
+}
+
+#img {
+  width: 45px;
+  height: 45px;
+}
+
+#img_db {
+  width: 450px;
+  height: 225px;
+}
+
+.rojo { color: red; }
+
+#titulo {
+    align-items: center;
+}
+
+#usuario {
+  list-style:none
+}
+
+tr,th {
+    border-style: none;
+}
+

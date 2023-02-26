@@ -1,0 +1,82 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0 auto;
+}
+
+#img {
+  width: 45px;
+  height: 45px;
+}
+
+#titulo {
+    align-items: center;
+}
+
+#usuario {
+  list-style:none
+}
+
+#ingreso {
+  content: '';
+
+}
+
+#categoria {
+  content: '';
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 5px solid;
+  width: 150px;
+  margin-top: -10px;
+}
+
+#buscador {
+  content: '';
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 5px solid;
+  vertical-align: middle;
+  align-content: left;
+  width: 150px;
+  margin-left: -180px;
+  margin-top: -10px;
+}
+
+#boton_buscar {
+  margin-left: -900px;
+  margin-top: 10px;
+}
+
+#categoria_ordenar {
+  content: '';
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 5px solid;
+  vertical-align: middle;
+  width: 150px;
+  margin-left: 545px;
+  margin-top: -73px;
+
+}
+
+#estilo {
+  content: '';
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 5px solid;
+  vertical-align: middle;
+  width: 150px;
+  margin-left: 725px;
+  margin-top: -73px;
+}
+
+#boton_ordenar- {
+  vertical-align: middle;
+  align-content: left;
+  margin-left: 910px;
+  margin-top: 400px;
+}

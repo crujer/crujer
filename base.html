@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+
+    <!-- Custom CSS -->
+    {% block customCSS %}
+    {% endblock %}
+</head>
+
+<body class="text-center">
+
+    <!-- INICIA MENU + LOGOUT + BIENVENIDA c/ NOMBRE -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary" style="background-color: rgba(0, 0, 0, 0.05);">
+        <div class="container-fluid">
+        <img id="img" class="mb-0" href="{{ url_for('index') }}" src="{{ url_for('static', filename='img/conocerpc.jpg') }}" alt="Conocer PC" width="30" height="30">
+        <a style="color:#ffffff">..</a>
+        <a id="titulo" class="navbar-brand fw-bold" href="{{ url_for('index') }}">  Conocer PC</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+                <a class="nav-link active" href="{{ url_for('index') }}" aria-current="page">Sitio Web</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{{ url_for('home') }}">Sitio Empresa</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Profesor
+                </a>
+                <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{{ url_for('lista_cliente') }}">Lista Clientes</a></li>
+                <li><a class="dropdown-item" href="{{ url_for('usuarios') }}">Usuarios</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">Archivos Compartidos [x]</a></li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Alumno
+                </a>
+                <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Lista Clases [x]</a></li>
+                <li><a class="dropdown-item" href="{{ url_for('aula_virtual') }}">Aula Virtual</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="{{ url_for('upload') }}">Subir Contenido</a></li>
+                </ul>
+            </li>
+            </ul>
+            <li id="usuario" class="nav-item dropdown">
+               
+                <a class="dropdown-toggle btn btn-lg " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                {% for d in info %}
+                    <img class="btn-sm" id="btn-edit{{d.id}}" data-bs-toggle="modal" data-bs-target="#foto{{d.id}}" src="uploads/{{d.img}}" alt="{{d.img}}" title="{{d.img}}" width="50" height="35">
+                {% endfor %} 
+                {{ current_user.fullname }}
+                </a>
+                <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{{ url_for('perfil_usuario') }}">Ver Perfil</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class=" dropdown-item btn btn-outline-success my-2 my-sm-0" href="{{ url_for('index') }}">Logout</a></li>
+            </ul>
+            </li>
+        </div>
+        </div>
+    </nav>
+    <br/>
+    <!-- FIN MENU + LOGOUT + BIENVENIDA c/ NOMBRE -->
+
+    <div class="container py-3">
+    {% block body %}
+    
+    {% endblock %}
+    </div>
+
+    <!-- INICIO FOOTER -->
+    <footer id="footer" class="text-center text-lg-start bg-light bg-text-muted">
+        <!-- INICIO CONTACTO -->
+        <div class="text-center p-2" style="background-color: rgba(255, 255, 255, 0.973);">
+        <p class="text-center p-2"><img id="img" class="text-center p-2" src="{{ url_for('static', filename='img/Footer_wp.png') }}" width="3" height="5">
+        (011) 6914-4040 |  
+        <img id="img" class="mb-1" src="{{ url_for('static', filename='img/Footer_mail.jpeg') }}" width="5" height="5">
+        grunberg.n@gmail.com   |
+        <img id="img" class="text-center p-2" src="{{ url_for('static', filename='img/ig.png') }}" width="3" height="3">
+        Instagram</p>
+        © 2023 Copyright & Webmaster:
+        <a class="text-reset fw-bold" href="">Conocer PC</a>
+        </div>
+        <!-- FIN COPYRIGHT -->
+    </footer>
+    <!-- FIN FOOTER -->
+
+</body>
+</html>

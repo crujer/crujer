@@ -1,0 +1,176 @@
+{% extends './base.html' %}
+
+{% block title %}Usuarios{% endblock %}
+
+{% block customCSS %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/usuarios.css') }}">
+{% endblock %}
+
+{% block body %}
+
+<!-- INICIO BASE DE DATO-->
+<h1 class="">LISTA USUARIOS</h1>
+<div class="container">
+    <div class="card shadow">
+        <div class="card-body">
+            <form action="/user" method="POST">
+                <div class="row mb-3">
+                    <div class="col" id="ingreso">
+                        <label>Apellido</label>
+                        <input type="text" class="form-control mb-3" name="apellido" placeholder="Apellido">
+                    </div>
+                    <div class="col" id="ingreso">
+                        <label>Nombre</label>
+                        <input type="text" class="form-control mb-3" name="nombre" placeholder="Nombre">
+                    </div>
+                    <div class="col" id="ingreso">
+                        <label>ID TW</label>
+                        <input type="text" class="form-control mb-3" name="id_tw" placeholder="ID TW">
+                    </div>
+                    <div class="col" id="ingreso">
+                        <label>Fecha</label>
+                        <input type="date" class="form-control mb-3" name="fecha" placeholder="Fecha">
+                    </div>
+                    <div class="col" id="ingreso">
+                        <label>Hs</label>
+                        <input type="time" class="form-control mb-3" name="hs" max="22:30" min="10:00" placeholder="Hs">
+                    </div>
+                    <div class="col">
+                        <button class="btn btn-primary mb-3 mt-4" type="submit">Cargar</button>
+                    </div>
+                </div>
+            </form>
+            <form action="/buscador_usuario" method="POST"> <!--method="POST"-->
+                <div class="row mb-3">
+                    <div class="col">
+                        <select class="form-control mb-3" name="categoria" id="categoria" placeholder="Categoria">
+                            <option>Categ. Buscar</option>
+                            <option value="id">ID</option>
+                            <option value="apellido">Apellido</option>
+                            <option value="nombre">Nombre</option>
+                            <option value="id_tw">ID TW</option>
+                            <option value="fecha">Fecha</option>
+                            <option value="hs">Hs</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control mb-3" id ="buscador" name="buscador" placeholder="Buscador">
+                    </div>
+                    <div class="col">
+                        <button class="btn btn-primary " style="top: 50%; margin-top: -5px; margin-left: -890px;" id="boton_buscar" type="submit">Buscar</button>
+                    </div>
+                </div>
+            </form>
+
+            <form action="/ordenar" method="POST"> <!--method="POST"-->
+                <div class="row mb-3">
+                    <div class="col">
+                        <select class="form-control mb-3" name="categoria_ordenar" id="categoria_ordenar" placeholder="Categoria">
+                            <option>Categ. Ordenar</option>
+                            <option value="id">ID</option>
+                            <option value="apellido">Apellido</option>
+                            <option value="nombre">Nombre</option>
+                            <option value="id_tw">ID TW</option>
+                            <option value="fecha">Fecha</option>
+                            <option value="hs">Hs</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <select class="form-control mb-3" name="estilo" id="estilo" placeholder="categoria_ordenar">
+                            <option>Metodo Ordenar</option>
+                            <option value="">Ascendente</option>
+                            <option value="DESC">Descendente</option>
+                        </select>
+                    </div>
+                    <div>
+                        <button class="btn btn-primary " style="margin-top: -125px; margin-left: 890px;" id="boton_ordenar" type="submit">Ordenar</button>
+                    </div>
+                </div>
+            </form>
+                <!-- Tabla -->
+
+            <table class="table table table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Apellido</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">ID TW</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Hs</th>
+                        <th scope="col">Editar</th>
+                        <th scope="col">Borrar</th>
+                    </tr>
+                </thead>
+            
+            <tbody>
+                {% for d in data %}
+                    <tr>
+                        <td>{{d.id}}</td>
+                        <td>{{d.apellido}}</td>
+                        <td>{{d.nombre}}</td>
+                        <td>{{d.id_tw}}</td>
+                        <td>{{d.fecha}}</td>
+                        <td>{{d.hs}}</td>
+                        <td><button class="btn btn-primary btn-sm" id="btn-edit{{d.id}}" data-bs-toggle="modal" data-bs-target="#modal{{d.id}}">Edit</button></td>
+                        <td><a href="{{url_for('delete', id=d.id)}}" class="btn btn-danger btn-sm">Delete</a></td>
+                    </tr>
+
+                    <!-- modal -->
+
+                    <div class="modal fade" id="modal{{d.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h1 class="modal-title fs-5" id="exampleModalLabel">{{d.username}}</h1>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <h3>Edicion de Datos</h3>
+                                <form action="/edit/{{d.id}}" method="post">
+                                    <label>Apellido</label>
+                                    <input type="text" class="form-control mb-3" name="apellido" value="{{d.apellido}}">
+                                    <label>Nombre</label>
+                                    <input type="text" class="form-control mb-3" name="nombre" value="{{d.nombre}}">
+                                    <label>ID TW</label>
+                                    <input type="text" class="form-control mb-3" name="id_tw" value="{{d.id_tw}}">
+                                    <label>Fecha</label>
+                                    <input type="text" class="form-control mb-3" name="fecha" value="{{d.fecha}}">
+                                    <label>Hs</label>
+                                    <input type="text" class="form-control mb-3" name="hs" value="{{d.hs}}">
+                            </div>
+                            <div class="modal-footer">
+                              <button type="submit" class="btn btn-primary">Save changes</button>
+                            </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+
+
+
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+
+        </div>
+    </div>
+</div>
+<!-- FIN BASE DE DATOS-->
+
+{% endblock %}
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
+integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous">
+</script>
+<script src="{{ url_for('static', filename='js/base.js') }}"></script>
